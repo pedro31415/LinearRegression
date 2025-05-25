@@ -61,7 +61,7 @@ X_test_bias = np.hstack((np.ones((X_test.shape[0], 1)), X_test))
 weights = np.zeros(X_train_bias.shape[1])
 
 # Treinar o modelo
-weights = gradient_descent(X_train_bias, y_train, weights, lr=0.1, epochs=1000)
+weights = gradient_descent(X_train_bias, y_train, weights, lr=0.1, epochs=100)
 
 # Pós-processamento
 
