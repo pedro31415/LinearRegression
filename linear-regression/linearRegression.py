@@ -6,7 +6,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, r2_score
 
-df = pd.read_csv("csv/student-por.csv", sep=";")
+df = pd.read_csv("linear-regression/csv/student-por.csv", sep=";")
 
 
 # Pré-processamento 
