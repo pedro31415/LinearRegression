@@ -8,7 +8,6 @@ from sklearn.metrics import mean_absolute_error, r2_score
 
 df = pd.read_csv("linear-regression/csv/student-por.csv", sep=";")
 
-
 # Pré-processamento 
 print(df.head())
 print(df.describe())
@@ -28,7 +27,7 @@ sns.boxplot(data=df[['G1', 'G2', 'G3']])
 # plt.title('Distribuição das Notas')
 # plt.show()
 
-
+df.drop(columns=["G1", "G2"], inplace=True)
 
 #verificar se há outliers
 # Selecionar apenas colunas numéricas (exceto a target "G3" por enquanto)
@@ -44,6 +43,8 @@ df[num_cols] = scaler.fit_transform(df[num_cols])
 # codidificação de variáveis categóricas
 df = pd.get_dummies(df, drop_first=True) 
 print(df.info())
+df = df.astype(float)
+
 
 # dividir os dados em variáveis independentes (X) e dependentes (y)
 X = df.drop("G3", axis=1).values
