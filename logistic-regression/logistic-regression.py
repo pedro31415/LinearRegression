@@ -1,6 +1,8 @@
+import matplotlib
+matplotlib.use('TkAgg') # <--- Adicione esta linha AQUI
 import pandas as pd
 import seaborn as sns
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 import numpy as np
