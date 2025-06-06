@@ -12,6 +12,8 @@ import scipy.sparse
 # Carregar o dataset
 df = pd.read_csv('logistic-regression/csv/emails.csv')
 
+# Pré-processamento 
+
 # Verificar tipos e valores únicos
 print(df.dtypes)
 print(df['spam'].unique())
@@ -38,6 +40,8 @@ assert not np.any(np.isinf(X_train_bias.data)), "X_train_bias contém Inf"
 assert not np.any(np.isnan(y_train)), "y_train contém NaN"
 assert not np.any(np.isinf(y_train)), "y_train contém Inf"
 
+# Processamento
+
 # Sigmoid com clipping
 def sigmoid(z):
     z = np.clip(z, -500, 500)
@@ -51,7 +55,7 @@ def compute_cost(X, y, weights):
         z = z.toarray().flatten()
     h = sigmoid(z)
     h = np.clip(h, 1e-10, 1 - 1e-10)
-    cost = - (1/m) * np.sum(y * np.log(h) + (1 - y) * np.log(1 - h))
+    cost = - (1/m) * np.sum(y * np.log(h) + (1 - y) * np.log(1 - h)) # Average Binary Cross-Entropy
     return cost
 
 # Gradiente Descendente com registro dos custos
@@ -94,6 +98,8 @@ weights, costs = gradient_descent(X_train_bias, y_train, weights, lr=0.05, epoch
 # Fazer previsões com threshold escolhido
 chosen_threshold = 0.32
 y_pred = predict(X_test_bias, weights, threshold=chosen_threshold)
+
+# Pós-processamento
 
 # Avaliação do modelo com zero_division=1 para evitar warnings
 print("Acurácia:", accuracy_score(y_test, y_pred))
