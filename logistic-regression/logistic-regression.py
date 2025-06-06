@@ -132,6 +132,15 @@ def evaluate_thresholds(X, y_true, weights):
 # Avaliar thresholds no conjunto de teste
 thresholds, accuracies, precisions, recalls, f1s = evaluate_thresholds(X_test_bias, y_test, weights)
 
+plt.figure(figsize=(6, 4))
+sns.countplot(x='spam', data=df, palette='viridis')
+plt.title('Distribuição das Classes (Spam vs Não Spam)')
+plt.xlabel('Classe (0 = Não Spam, 1 = Spam)')
+plt.ylabel('Quantidade')
+plt.xticks([0, 1], ['Não Spam (0)', 'Spam (1)'])
+plt.grid(axis='y')
+plt.show()
+
 # Plotar os gráficos das métricas para diferentes thresholds
 plt.figure(figsize=(10,6))
 plt.plot(thresholds, accuracies, label='Acurácia')
