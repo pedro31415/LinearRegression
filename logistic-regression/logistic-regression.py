@@ -102,10 +102,10 @@ y_pred = predict(X_test_bias, weights, threshold=chosen_threshold)
 # Pós-processamento
 
 # Avaliação do modelo com zero_division=1 para evitar warnings
-print("Acurácia:", accuracy_score(y_test, y_pred))
-print("Precisão:", precision_score(y_test, y_pred, zero_division=1))
-print("Recall:", recall_score(y_test, y_pred, zero_division=1))
-print("F1 Score:", f1_score(y_test, y_pred, zero_division=1))
+print("Acurácia:",(accuracy_score(y_test, y_pred) * 100))
+print("Precisão:", (precision_score(y_test, y_pred, zero_division=1) * 100))
+print("Recall:", (recall_score(y_test, y_pred, zero_division=1) * 100))
+print("F1 Score:", (f1_score(y_test, y_pred, zero_division=1) * 100))
 
 # Função para avaliar métricas em vários thresholds
 def evaluate_thresholds(X, y_true, weights):
