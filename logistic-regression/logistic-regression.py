@@ -1,5 +1,5 @@
 import matplotlib
-matplotlib.use('TkAgg') # <--- Adicione esta linha AQUI
+matplotlib.use('TkAgg') 
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
