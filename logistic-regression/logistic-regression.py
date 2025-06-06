@@ -55,7 +55,7 @@ def compute_cost(X, y, weights):
         z = z.toarray().flatten()
     h = sigmoid(z)
     h = np.clip(h, 1e-10, 1 - 1e-10)
-    cost = - (1/m) * np.sum(y * np.log(h) + (1 - y) * np.log(1 - h)) # Average Binary Cross-Entropy
+    cost = - (1/m) * np.sum(y * np.log(h) + (1 - y) * np.log(1 - h)) # Average Binary Cross-Entropy | Log-Loss
     return cost
 
 # Gradiente Descendente com registro dos custos
