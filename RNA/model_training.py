@@ -8,7 +8,7 @@ from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, Input
 from keras.callbacks import EarlyStopping
 
-# --- 1. Configurações Iniciais ---
+# Configurações Iniciais 
 # Caminho para a pasta com as imagens.
 # O script espera que a pasta UTKFace esteja no mesmo diretório.
 dataset_path = 'RNA/UTKFace'
@@ -23,13 +23,12 @@ image_files = os.listdir(dataset_path)
 IMG_HEIGHT = 128
 IMG_WIDTH = 128
 
-# Limitar o número de imagens para um teste mais rápido (opcional).
-# Para usar o dataset completo, defina como None.
+# Limitar o número de imagens para um teste mais rápido 
 MAX_IMAGES = 8000
 if MAX_IMAGES:
     image_files = image_files[:MAX_IMAGES]
 
-# --- 2. Carregamento e Pré-processamento dos Dados ---
+# Carregamento e Pré-processamento dos Dados
 images = []
 labels = []
 

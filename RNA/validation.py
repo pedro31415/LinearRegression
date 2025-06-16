@@ -7,7 +7,7 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
 
-# --- 1. CONFIGURAÇÕES ---
+# CONFIGURAÇÕES
 # Defina os caminhos e parâmetros.
 MODEL_PATH = 'RNA/models/gender_classifier.keras'
 DATASET_PATH = 'RNA/UTKFace'
@@ -15,7 +15,7 @@ IMG_HEIGHT = 128
 IMG_WIDTH = 128
 MAX_IMAGES = 8000 
 
-# --- 2. FUNÇÕES AUXILIARES ---
+# FUNÇÕES AUXILIARES
 
 def load_and_preprocess_data(dataset_path, max_images):
     """
@@ -144,7 +144,7 @@ def plot_example_predictions(model, X_test, y_test, num_examples=10):
     plt.show()
 
 
-# --- 3. EXECUÇÃO PRINCIPAL ---
+# EXECUÇÃO PRINCIPAL
 
 if __name__ == "__main__":
     # Carrega e pré-processa todos os dados
@@ -166,7 +166,7 @@ if __name__ == "__main__":
         else:
             print(f"\nCarregando modelo salvo de '{MODEL_PATH}'...")
             model = tf.keras.models.load_model(MODEL_PATH)
-            model.summary()
+            #model.summary()
 
             print("\nRealizando previsões no conjunto de teste...")
             predictions = model.predict(X_test)
