@@ -1,6 +1,8 @@
+import matplotlib
+matplotlib.use('TkAgg') 
 import pandas as pd
 import seaborn as sns
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 import numpy as np
@@ -9,6 +11,8 @@ import scipy.sparse
 
 # Carregar o dataset
 df = pd.read_csv('logistic-regression/csv/emails.csv')
+
+# Pré-processamento 
 
 # Verificar tipos e valores únicos
 print(df.dtypes)
@@ -36,6 +40,8 @@ assert not np.any(np.isinf(X_train_bias.data)), "X_train_bias contém Inf"
 assert not np.any(np.isnan(y_train)), "y_train contém NaN"
 assert not np.any(np.isinf(y_train)), "y_train contém Inf"
 
+# Processamento
+
 # Sigmoid com clipping
 def sigmoid(z):
     z = np.clip(z, -500, 500)
@@ -49,7 +55,7 @@ def compute_cost(X, y, weights):
         z = z.toarray().flatten()
     h = sigmoid(z)
     h = np.clip(h, 1e-10, 1 - 1e-10)
-    cost = - (1/m) * np.sum(y * np.log(h) + (1 - y) * np.log(1 - h))
+    cost = - (1/m) * np.sum(y * np.log(h) + (1 - y) * np.log(1 - h)) # Average Binary Cross-Entropy | Log-Loss
     return cost
 
 # Gradiente Descendente com registro dos custos
@@ -93,11 +99,13 @@ weights, costs = gradient_descent(X_train_bias, y_train, weights, lr=0.05, epoch
 chosen_threshold = 0.32
 y_pred = predict(X_test_bias, weights, threshold=chosen_threshold)
 
+# Pós-processamento
+
 # Avaliação do modelo com zero_division=1 para evitar warnings
-print("Acurácia:", accuracy_score(y_test, y_pred))
-print("Precisão:", precision_score(y_test, y_pred, zero_division=1))
-print("Recall:", recall_score(y_test, y_pred, zero_division=1))
-print("F1 Score:", f1_score(y_test, y_pred, zero_division=1))
+print("Acurácia:",(accuracy_score(y_test, y_pred) * 100))
+print("Precisão:", (precision_score(y_test, y_pred, zero_division=1) * 100))
+print("Recall:", (recall_score(y_test, y_pred, zero_division=1) * 100))
+print("F1 Score:", (f1_score(y_test, y_pred, zero_division=1) * 100))
 
 # Função para avaliar métricas em vários thresholds
 def evaluate_thresholds(X, y_true, weights):
@@ -123,6 +131,15 @@ def evaluate_thresholds(X, y_true, weights):
 
 # Avaliar thresholds no conjunto de teste
 thresholds, accuracies, precisions, recalls, f1s = evaluate_thresholds(X_test_bias, y_test, weights)
+
+plt.figure(figsize=(6, 4))
+sns.countplot(x='spam', data=df, palette='viridis')
+plt.title('Distribuição das Classes (Spam vs Não Spam)')
+plt.xlabel('Classe (0 = Não Spam, 1 = Spam)')
+plt.ylabel('Quantidade')
+plt.xticks([0, 1], ['Não Spam (0)', 'Spam (1)'])
+plt.grid(axis='y')
+plt.show()
 
 # Plotar os gráficos das métricas para diferentes thresholds
 plt.figure(figsize=(10,6))
