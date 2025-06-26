@@ -86,7 +86,7 @@ def plot_dataset_distributions(genders, ages):
     ax2.set_xlabel('Idade', fontsize=12)
     ax2.set_ylabel('Frequência', fontsize=12)
 
-    plt.suptitle('📊 Análise Exploratória do Dataset UTKFace', fontsize=18, y=1)
+    plt.suptitle('Análise Exploratória do Dataset UTKFace', fontsize=18, y=1)
     plt.tight_layout()
     plt.show()
 
@@ -151,7 +151,7 @@ if __name__ == "__main__":
     all_images, all_genders, all_ages = load_and_preprocess_data(DATASET_PATH, MAX_IMAGES)
 
     if all_images is not None:
-        # 📊 Etapa de Análise Exploratória
+        # Etapa de Análise Exploratória
         plot_dataset_distributions(all_genders, all_ages)
 
         # Recria a mesma divisão treino/teste para obter o X_test e y_test corretos
@@ -160,7 +160,7 @@ if __name__ == "__main__":
             all_images, all_genders, test_size=0.2, random_state=42, stratify=all_genders
         )
 
-        # 🤖 Etapa de Carregamento e Validação do Modelo
+        # Etapa de Carregamento e Validação do Modelo
         if not os.path.exists(MODEL_PATH):
             print(f"Erro: Modelo '{MODEL_PATH}' não encontrado. Execute o script de treino primeiro.")
         else:
